@@ -1,0 +1,11 @@
+# .env - Configurações do VoiceBot com IA
+
+# 🔑 Chave da API OpenAI (você já é assinante do ChatGPT Plus)
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# 🌐 Endpoint e Token da Evolution API
+EVOLUTION_API_URL=https://api.evolution.com/send-message
+EVOLUTION_API_TOKEN=seu-token-aqui
+
+# ✅ Porta padrão (usado com Flask localmente ou no deploy)
+PORT=5000
