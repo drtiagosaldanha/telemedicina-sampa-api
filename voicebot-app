@@ -1,0 +1,29 @@
+📁 Arquivo: app.py (principal)
+
+from flask import Flask, request, jsonify from utils.stt import transcrever_audio from utils.gpt import gerar_resposta from utils.tts import gerar_audio_resposta import os
+
+app = Flask(name)
+
+🔐 Carregar variáveis de ambiente
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY') EVOLUTION_API_URL = os.getenv('EVOLUTION_API_URL') EVOLUTION_API_TOKEN = os.getenv('EVOLUTION_API_TOKEN')
+
+🚀 Endpoint principal do VoiceBot
+
+@app.route('/voicebot', methods=['POST']) def voicebot(): dados = request.json audio_url = dados.get('audio_url') numero_whatsapp = dados.get('whatsapp')
+
+texto_usuario = transcrever_audio(audio_url)
+resposta_ia = gerar_resposta(texto_usuario)
+caminho_audio = gerar_audio_resposta(resposta_ia)
+
+print(f"📥 Texto transcrito: {texto_usuario}")
+print(f"🤖 Resposta IA: {resposta_ia}")
+print(f"🔊 Áudio gerado: {caminho_audio}")
+
+return jsonify({
+    "resposta": resposta_ia,
+    "audio_path": caminho_audio
+})
+
+if name == 'main': app.run(debug=True, host='0.0.0.0')
+
